@@ -1,5 +1,5 @@
 cd ~/  
-pkg install git -y  
+apt install git -y  
 git clone https://github.com/rfriends/rfriends_ubuntu.git  
 cd rfriends_ubuntu  
 sh rfriends3_ubuntu.sh  
