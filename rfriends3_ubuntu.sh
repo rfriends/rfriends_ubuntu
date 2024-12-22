@@ -35,16 +35,16 @@ echo
 echo install tools
 echo
 #
-sudo apt update && sudo apt -y install \
+sudo apt-get update && sudo apt-get -y install \
 unzip p7zip-full nano vim dnsutils iproute2 tzdata \
 at cron wget curl atomicparsley \
 php-cli php-xml php-zip php-mbstring php-json php-curl php-intl \
 ffmpeg
 
-sudo apt -y install chromium-browser
-sudo apt -y install samba
-sudo apt -y install lighttpd lighttpd-mod-webdav php-cgi
-sudo apt -y install openssh-server
+sudo apt-get -y install chromium-browser
+sudo apt-get -y install samba
+sudo apt-get -y install lighttpd lighttpd-mod-webdav php-cgi
+sudo apt-get -y install openssh-server
 # -----------------------------------------
 echo
 echo install rfriends3
