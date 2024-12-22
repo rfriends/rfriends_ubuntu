@@ -17,7 +17,7 @@ echo
 echo rfriends3 for ubuntu $ver
 echo
 # -----------------------------------------
-dir=.
+dir=$(cd $(dirname $0);pwd)
 user=`whoami`
 userstr="s/rfriendsuser/${user}/g"
 #
@@ -123,7 +123,7 @@ port=8000
 ip=`sh rfriends3/getIP.sh`
 server=${ip}:${port}
 echo
-echo ƒuƒ‰ƒEƒU‚ÅAhttp://$server ‚ÉƒAƒNƒZƒX‚µ‚Ä‚­‚¾‚³‚¢B
+echo ãƒ–ãƒ©ã‚¦ã‚¶ã§ã€http://$server ã«ã‚¢ã‚¯ã‚»ã‚¹ã—ã¦ãã ã•ã„ã€‚
 echo
 # -----------------------------------------
 # finish
