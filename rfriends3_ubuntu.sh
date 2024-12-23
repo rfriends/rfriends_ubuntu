@@ -22,9 +22,9 @@ dir=$(cd $(dirname $0);pwd)
 user=`whoami`
 userstr="s/rfriendsuser/${user}/g"
 if [ -z $HOME ]; then
-  $homedir=`sh -c 'cd && pwd'`
+  homedir=`sh -c 'cd && pwd'`
 else
-  $homedir=$HOME
+  homedir=$HOME
 fi
 #
 SITE=https://github.com/rfriends/rfriends3/releases/latest/download
