@@ -63,8 +63,8 @@ echo
 echo configure samba
 echo
 
-#sudo mkdir -p /var/log/samba
-#sudo chown root.adm /var/log/samba
+sudo mkdir -p /var/log/samba
+sudo chown root.adm /var/log/samba
 
 mkdir -p $HOME/smbdir/usr2/
 
