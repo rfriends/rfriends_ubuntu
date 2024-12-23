@@ -30,6 +30,7 @@ bit=`getconf LONG_BIT`
 echo
 echo architecture is $ar $bit bits .
 echo user is $user .
+echo current directry is $dir
 # -----------------------------------------
 echo
 echo install tools
