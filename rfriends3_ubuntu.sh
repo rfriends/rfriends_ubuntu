@@ -11,7 +11,8 @@
 # 3.6 2024/10/29 add webdav
 # 3.7 2024/11/04 add dirindex.css
 # 4.0 2024/12/13 github
-ver=4.0
+# 4.1 2024/12/24 fix
+ver=4.1
 # -----------------------------------------
 echo
 echo rfriends3 for ubuntu $ver
@@ -20,10 +21,14 @@ echo
 dir=$(cd $(dirname $0);pwd)
 user=`whoami`
 userstr="s/rfriendsuser/${user}/g"
+if [ -z $HOME ]; then
+  $homedir=`sh -c 'cd && pwd'`
+else
+  $homedir=$HOME
+fi
 #
 SITE=https://github.com/rfriends/rfriends3/releases/latest/download
 SCRIPT=rfriends3_latest_script.zip
-HOME=/home/$user
 # -----------------------------------------
 ar=`dpkg --print-architecture`
 bit=`getconf LONG_BIT`
@@ -50,11 +55,11 @@ sudo apt-get -y install openssh-server
 echo
 echo install rfriends3
 echo
-#rm $HOME/rfriends3_latest_script.zip
-#wget http://rfriends.s1009.xrea.com/files3/rfriends3_latest_script.zip -O $HOME/rfriends3_latest_script.zip
-#unzip -q -o -d $HOME /home/$user/rfriends3_latest_script.zip
+#rm $homedir/rfriends3_latest_script.zip
+#wget http://rfriends.s1009.xrea.com/files3/rfriends3_latest_script.zip -O $homedir/rfriends3_latest_script.zip
+#unzip -q -o -d $homedir $homedir/rfriends3_latest_script.zip
 
-cd $HOME
+cd $homedir
 rm -f $SCRIPT
 wget $SITE/$SCRIPT
 unzip -q -o $SCRIPT
@@ -66,7 +71,7 @@ echo
 sudo mkdir -p /var/log/samba
 sudo chown root.adm /var/log/samba
 
-mkdir -p $HOME/smbdir/usr2/
+mkdir -p $homedir/smbdir/usr2/
 
 sudo cp -p /etc/samba/smb.conf /etc/samba/smb.conf.org
 sudo sed -e ${userstr} $dir/smb.conf.skel > $dir/smb.conf
@@ -76,8 +81,8 @@ sudo chown root:root /etc/samba/smb.conf
 echo
 echo configure usrdir
 echo
-mkdir -p $HOME/tmp/
-sed -e ${userstr} $dir/usrdir.ini.skel > $HOME/rfriends3/config/usrdir.ini
+mkdir -p $homedir/tmp/
+sed -e ${userstr} $dir/usrdir.ini.skel > $homedir/rfriends3/config/usrdir.ini
 # -----------------------------------------
 echo
 echo configure lighttpd
@@ -93,10 +98,10 @@ sudo sed -e ${userstr} $dir/lighttpd.conf.skel > $dir/lighttpd.conf
 sudo cp -p $dir/lighttpd.conf /etc/lighttpd/lighttpd.conf
 sudo chown root:root /etc/lighttpd/lighttpd.conf
 
-mkdir -p $HOME/lighttpd/uploads/
-cd $HOME/rfriends3/script/html
+mkdir -p $homedir/lighttpd/uploads/
+cd $homedir/rfriends3/script/html
 ln -nfs temp webdav
-cd $HOME
+cd $homedir
 sudo lighttpd-enable-mod fastcgi
 sudo lighttpd-enable-mod fastcgi-php
 # -----------------------------------------
@@ -119,9 +124,9 @@ sudo systemctl enable cron
 #echo visit rfriends at http://xxx.xxx.xxx.xxx:8000 .
 #echo
 # -----------------------------------------
-cd $HOME
+cd $homedir
 port=8000
-ip=`sh rfriends3/getIP.sh`
+ip=`sh $homedir/rfriends3/getIP.sh`
 server=${ip}:${port}
 echo
 echo ブラウザで、http://$server にアクセスしてください。
