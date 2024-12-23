@@ -36,6 +36,7 @@ echo
 echo architecture is $ar $bit bits .
 echo user is $user .
 echo current directry is $dir
+echo home directry is $homedir
 # -----------------------------------------
 echo
 echo install tools
@@ -47,7 +48,7 @@ at cron wget curl atomicparsley \
 php-cli php-xml php-zip php-mbstring php-json php-curl php-intl \
 ffmpeg
 
-sudo apt-get -y install chromium-browser
+sudo apt-get -y install chromium-browser 
 sudo apt-get -y install samba
 sudo apt-get -y install lighttpd lighttpd-mod-webdav php-cgi
 sudo apt-get -y install openssh-server
