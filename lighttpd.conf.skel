@@ -13,11 +13,11 @@ server.modules = (
 #server.groupname            = "www-data"
 #server.port                 = 80
 
-server.document-root        = "/home/rfriendsuser/rfriends3/script/html"
-server.upload-dirs          = ( "/home/rfriendsuser/lighttpd/uploads" )
-server.errorlog             = "/home/rfriendsuser/lighttpd/error.log"
+server.document-root        = "rfriendshomedir/rfriends3/script/html"
+server.upload-dirs          = ( "rfriendshomedir/lighttpd/uploads" )
+server.errorlog             = "rfriendshomedir/lighttpd/error.log"
 #server.pid-file             = "/run/lighttpd/lighttpd.pid"
-server.pid-file             = "/home/rfriendsuser/lighttpd/lighttpd.pid"
+server.pid-file             = "rfriendshomedir/lighttpd/lighttpd.pid"
 server.username             = "rfriendsuser"
 server.groupname            = "rfriendsuser"
 server.port                 = 8000
