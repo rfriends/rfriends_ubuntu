@@ -1,2 +1,2 @@
-usrdir = "/home/rfriendsuser/smbdir/usr2/"
-tmpdir = "/home/rfriendsuser/tmp/"
+usrdir = "rfriendshomedir/smbdir/usr2/"
+tmpdir = "rfriendshomedir/tmp/"
