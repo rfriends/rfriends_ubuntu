@@ -238,7 +238,7 @@
 #
 [smbdir]
 comment = Raspberry Pi share folder for rfriends
-path = /home/rfriendsuser/smbdir
+path = rfriendshomedir/smbdir
 read only = no
 browsable = yes
 guest ok = yes
