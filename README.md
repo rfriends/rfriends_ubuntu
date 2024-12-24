@@ -1,3 +1,6 @@
+現在、メンテナンス中  
+  
+  
 ubuntu/debian用のrfriends3インストールスクリプトです。
 
 cd ~/  
