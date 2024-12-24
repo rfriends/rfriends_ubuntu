@@ -20,12 +20,12 @@ echo
 # -----------------------------------------
 dir=$(cd $(dirname $0);pwd)
 user=`whoami`
-userstr="s/rfriendsuser/${user}/g"
 if [ -z $HOME ]; then
   homedir=`sh -c 'cd && pwd'`
 else
   homedir=$HOME
 fi
+userstr="s/rfriendsuser/${user}/g"
 #
 SITE=https://github.com/rfriends/rfriends3/releases/latest/download
 SCRIPT=rfriends3_latest_script.zip
