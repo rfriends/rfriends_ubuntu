@@ -67,6 +67,7 @@ chmod 644 .vimrc
 echo
 echo install rfriends3
 echo
+# -----------------------------------------
 #rm $homedir/rfriends3_latest_script.zip
 #wget http://rfriends.s1009.xrea.com/files3/rfriends3_latest_script.zip -O $homedir/rfriends3_latest_script.zip
 #unzip -q -o -d $homedir $homedir/rfriends3_latest_script.zip
@@ -79,7 +80,7 @@ unzip -q -o $SCRIPT
 echo
 echo configure samba
 echo
-
+# -----------------------------------------
 sudo mkdir -p /var/log/samba
 sudo chown root.adm /var/log/samba
 
@@ -93,13 +94,14 @@ sudo chown root:root /etc/samba/smb.conf
 echo
 echo configure usrdir
 echo
+# -----------------------------------------
 mkdir -p $homedir/tmp/
 sed -e ${userstr} $dir/usrdir.ini.skel > $homedir/rfriends3/config/usrdir.ini
 # -----------------------------------------
 echo
 echo configure lighttpd
 echo
-
+# -----------------------------------------
 sudo cp -p /etc/lighttpd/conf-available/15-fastcgi-php.conf /etc/lighttpd/conf-available/15-fastcgi-php.conf.org
 sudo sed -e ${userstr} $dir/15-fastcgi-php.conf.skel > $dir/15-fastcgi-php.conf
 sudo cp -p $dir/15-fastcgi-php.conf /etc/lighttpd/conf-available/15-fastcgi-php.conf
@@ -119,6 +121,7 @@ sudo lighttpd-enable-mod fastcgi-php
 # -----------------------------------------
 # systemd or service
 #
+# -----------------------------------------
 sudo systemctl enable smbd
 sudo systemctl enable lighttpd
 sudo systemctl enable atd
