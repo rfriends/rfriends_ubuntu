@@ -25,7 +25,6 @@ if [ -z $HOME ]; then
 else
   homedir=$HOME
 fi
-userstr="s/rfriendsuser/${user}/g"
 #
 SITE=https://github.com/rfriends/rfriends3/releases/latest/download
 SCRIPT=rfriends3_latest_script.zip
@@ -87,7 +86,7 @@ sudo chown root.adm /var/log/samba
 mkdir -p $homedir/smbdir/usr2/
 
 sudo cp -p /etc/samba/smb.conf /etc/samba/smb.conf.org
-sudo sed -e ${userstr} $dir/smb.conf.skel > $dir/smb.conf
+sudo sed -e s/rfriendshomedir/$homedir/g $dir/smb.conf.skel > $dir/smb.conf
 sudo cp -p $dir/smb.conf /etc/samba/smb.conf
 sudo chown root:root /etc/samba/smb.conf
 # -----------------------------------------
@@ -96,19 +95,19 @@ echo configure usrdir
 echo
 # -----------------------------------------
 mkdir -p $homedir/tmp/
-sed -e ${userstr} $dir/usrdir.ini.skel > $homedir/rfriends3/config/usrdir.ini
+sed -e s/rfriendshomedir/$homedir/g $dir/usrdir.ini.skel > $homedir/rfriends3/config/usrdir.ini
 # -----------------------------------------
 echo
 echo configure lighttpd
 echo
 # -----------------------------------------
 sudo cp -p /etc/lighttpd/conf-available/15-fastcgi-php.conf /etc/lighttpd/conf-available/15-fastcgi-php.conf.org
-sudo sed -e ${userstr} $dir/15-fastcgi-php.conf.skel > $dir/15-fastcgi-php.conf
+sudo sed -e s/rfriendshomedir/$homedir/g $dir/15-fastcgi-php.conf.skel > $dir/15-fastcgi-php.conf
 sudo cp -p $dir/15-fastcgi-php.conf /etc/lighttpd/conf-available/15-fastcgi-php.conf
 sudo chown root:root /etc/lighttpd/conf-available/15-fastcgi-php.conf
 
 sudo cp -p /etc/lighttpd/lighttpd.conf /etc/lighttpd/lighttpd.conf.org
-sudo sed -e ${userstr} $dir/lighttpd.conf.skel > $dir/lighttpd.conf
+sudo sed -e s/rfriendshomedir/$homedir/g $dir/lighttpd.conf.skel > $dir/lighttpd.conf
 sudo cp -p $dir/lighttpd.conf /etc/lighttpd/lighttpd.conf
 sudo chown root:root /etc/lighttpd/lighttpd.conf
 
