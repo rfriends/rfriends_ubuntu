@@ -53,6 +53,17 @@ sudo apt-get -y install samba
 sudo apt-get -y install lighttpd lighttpd-mod-webdav php-cgi
 sudo apt-get -y install openssh-server
 # -----------------------------------------
+# .vimrcを設定する
+# -----------------------------------------
+cd $homedir
+mv -n .vimrc .vimrc.org
+cat <<EOF > .vimrc
+set encoding=utf-8
+set fileencodings=iso-2022-jp,euc-jp,sjis,utf-8
+set fileformats=unix,dos,mac
+EOF
+chmod 644 .vimrc
+# -----------------------------------------
 echo
 echo install rfriends3
 echo
