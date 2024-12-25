@@ -1,7 +1,7 @@
 #!/bin/bash
-# -----------------------------------------
+# =========================================
 # install rfriends for ubuntu
-# -----------------------------------------
+# =========================================
 # 3.0 2023/06/23
 # 3.1 2023/07/10 remove chromium-browser
 # 3.2 2023/07/12 renew
@@ -11,11 +11,12 @@
 # 3.6 2024/10/29 add webdav
 # 3.7 2024/11/04 add dirindex.css
 # 4.0 2024/12/13 github
-# 4.1 2024/12/24 fix
+# 4.1 2024/12/25 fix
 ver=4.1
 # -----------------------------------------
 echo
 echo rfriends3 for ubuntu $ver
+echo `date`
 echo
 # -----------------------------------------
 dir=$(cd $(dirname $0);pwd)
@@ -40,6 +41,7 @@ echo home directry is $homedir
 echo
 echo install tools
 echo
+# -----------------------------------------
 #
 sudo apt-get update && sudo apt-get -y install \
 unzip p7zip-full nano vim dnsutils iproute2 tzdata \
@@ -62,11 +64,11 @@ set fileencodings=iso-2022-jp,euc-jp,sjis,utf-8
 set fileformats=unix,dos,mac
 EOF
 chmod 644 .vimrc
-# -----------------------------------------
+# =========================================
 echo
 echo install rfriends3
 echo
-# -----------------------------------------
+# =========================================
 #rm $homedir/rfriends3_latest_script.zip
 #wget http://rfriends.s1009.xrea.com/files3/rfriends3_latest_script.zip -O $homedir/rfriends3_latest_script.zip
 #unzip -q -o -d $homedir $homedir/rfriends3_latest_script.zip
@@ -101,14 +103,15 @@ echo
 echo configure lighttpd
 echo
 # -----------------------------------------
+cd $dir
 sudo cp -p /etc/lighttpd/conf-available/15-fastcgi-php.conf /etc/lighttpd/conf-available/15-fastcgi-php.conf.org
-sed -e s%rfriendshomedir%$homedir%g $dir/15-fastcgi-php.conf.skel > $dir/15-fastcgi-php.conf
-sudo cp -p $dir/15-fastcgi-php.conf /etc/lighttpd/conf-available/15-fastcgi-php.conf
+sed -e s%rfriendshomedir%$homedir%g 15-fastcgi-php.conf.skel > 15-fastcgi-php.conf
+sudo cp -p 15-fastcgi-php.conf /etc/lighttpd/conf-available/15-fastcgi-php.conf
 sudo chown root:root /etc/lighttpd/conf-available/15-fastcgi-php.conf
 
 sudo cp -p /etc/lighttpd/lighttpd.conf /etc/lighttpd/lighttpd.conf.org
-sed -e s%rfriendshomedir%$homedir%g $dir/lighttpd.conf.skel > $dir/lighttpd.conf
-sudo cp -p $dir/lighttpd.conf /etc/lighttpd/lighttpd.conf
+sed -e s%rfriendshomedir%$homedir%g lighttpd.conf.skel > lighttpd.conf
+sudo cp -p lighttpd.conf /etc/lighttpd/lighttpd.conf
 sudo chown root:root /etc/lighttpd/lighttpd.conf
 
 mkdir -p $homedir/lighttpd/uploads/
@@ -120,7 +123,6 @@ sudo lighttpd-enable-mod fastcgi-php
 echo lighttpd > $homedir/rfriends3/rfriends3_boot.txt
 # -----------------------------------------
 # systemd or service
-#
 # -----------------------------------------
 sudo systemctl enable smbd
 sudo systemctl enable lighttpd
@@ -132,12 +134,7 @@ sudo systemctl enable cron
 #sudo service atd restart
 #sudo service cron restart
 # -----------------------------------------
-#ip=`ip -4 -br a`
-#echo
-#echo ip address is $ip .
-#echo
-#echo visit rfriends at http://xxx.xxx.xxx.xxx:8000 .
-#echo
+#  アクセスアドレス
 # -----------------------------------------
 cd $homedir
 port=8000
@@ -149,5 +146,6 @@ echo
 # -----------------------------------------
 # finish
 # -----------------------------------------
-echo finished
+echo `date`
+echo finished rfriends_ubuntu
 # -----------------------------------------
