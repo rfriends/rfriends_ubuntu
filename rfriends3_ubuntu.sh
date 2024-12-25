@@ -81,7 +81,7 @@ echo configure samba
 echo
 # -----------------------------------------
 sudo mkdir -p /var/log/samba
-sudo chown root.adm /var/log/samba
+sudo chown root:adm /var/log/samba
 
 mkdir -p $homedir/smbdir/usr2/
 
@@ -95,19 +95,19 @@ echo configure usrdir
 echo
 # -----------------------------------------
 mkdir -p $homedir/tmp/
-sed -e s/rfriendshomedir/$homedir/g $dir/usrdir.ini.skel > $homedir/rfriends3/config/usrdir.ini
+sed -e s%rfriendshomedir%$homedir%g $dir/usrdir.ini.skel > $homedir/rfriends3/config/usrdir.ini
 # -----------------------------------------
 echo
 echo configure lighttpd
 echo
 # -----------------------------------------
 sudo cp -p /etc/lighttpd/conf-available/15-fastcgi-php.conf /etc/lighttpd/conf-available/15-fastcgi-php.conf.org
-sed -e s/rfriendshomedir/$homedir/g $dir/15-fastcgi-php.conf.skel > $dir/15-fastcgi-php.conf
+sed -e s%rfriendshomedir%$homedir%g $dir/15-fastcgi-php.conf.skel > $dir/15-fastcgi-php.conf
 sudo cp -p $dir/15-fastcgi-php.conf /etc/lighttpd/conf-available/15-fastcgi-php.conf
 sudo chown root:root /etc/lighttpd/conf-available/15-fastcgi-php.conf
 
 sudo cp -p /etc/lighttpd/lighttpd.conf /etc/lighttpd/lighttpd.conf.org
-sed -e s/rfriendshomedir/$homedir/g $dir/lighttpd.conf.skel > $dir/lighttpd.conf
+sed -e s%rfriendshomedir%$homedir%g $dir/lighttpd.conf.skel > $dir/lighttpd.conf
 sudo cp -p $dir/lighttpd.conf /etc/lighttpd/lighttpd.conf
 sudo chown root:root /etc/lighttpd/lighttpd.conf
 
