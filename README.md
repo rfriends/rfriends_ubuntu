@@ -1,9 +1,7 @@
-現在、メンテナンス中  
-  
-  
 ubuntu/debian用のrfriends3インストールスクリプトです。
 
 cd ~/  
+rm -rf rfriends_ubuntu
 sudo apt install git  
 git clone https://github.com/rfriends/rfriends_ubuntu.git  
 cd rfriends_ubuntu  
