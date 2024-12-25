@@ -117,6 +117,7 @@ ln -nfs temp webdav
 cd $homedir
 sudo lighttpd-enable-mod fastcgi
 sudo lighttpd-enable-mod fastcgi-php
+echo lighttpd > $homedir/rfriends3/rfriends3_boot.txt
 # -----------------------------------------
 # systemd or service
 #
