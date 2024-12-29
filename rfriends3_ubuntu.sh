@@ -11,8 +11,8 @@
 # 3.6 2024/10/29 add webdav
 # 3.7 2024/11/04 add dirindex.css
 # 4.0 2024/12/13 github
-# 4.1 2024/12/25 fix
-ver=4.1
+# 4.2 2024/12/29 fix
+ver=4.2
 # -----------------------------------------
 echo
 echo rfriends3 for ubuntu $ver
@@ -89,7 +89,7 @@ mkdir -p $homedir/smbdir/usr2/
 
 sudo cp -p /etc/samba/smb.conf /etc/samba/smb.conf.org
 sed -e s%rfriendshomedir%$homedir%g $dir/smb.conf.skel > $dir/smb.conf
-sed -i s%rfriendsuser%$user%g $dir/smb.conf.conf
+sed -i s%rfriendsuser%$user%g $dir/smb.conf
 sudo cp -p $dir/smb.conf /etc/samba/smb.conf
 sudo chown root:root /etc/samba/smb.conf
 # -----------------------------------------
