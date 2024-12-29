@@ -88,7 +88,8 @@ sudo chown root:adm /var/log/samba
 mkdir -p $homedir/smbdir/usr2/
 
 sudo cp -p /etc/samba/smb.conf /etc/samba/smb.conf.org
-sed -e s/rfriendshomedir/$homedir/g $dir/smb.conf.skel > $dir/smb.conf
+sed -e s%rfriendshomedir%$homedir%g $dir/smb.conf.skel > $dir/smb.conf
+sed -i s%rfriendsuser%$user%g $dir/smb.conf.conf
 sudo cp -p $dir/smb.conf /etc/samba/smb.conf
 sudo chown root:root /etc/samba/smb.conf
 # -----------------------------------------
