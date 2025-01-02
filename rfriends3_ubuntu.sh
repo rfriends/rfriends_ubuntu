@@ -14,7 +14,7 @@ optsamba="on"
 export optlighttpd
 export optsamba
 #
-sh ubuntu.sh
+sh ubuntu_install.sh 2>&1 | tee ubuntu_install.log
 # -----------------------------------------
 # finish
 # -----------------------------------------
