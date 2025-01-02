@@ -11,8 +11,8 @@
 # 3.6 2024/10/29 add webdav
 # 3.7 2024/11/04 add dirindex.css
 # 4.0 2024/12/13 github
-# 4.2 2024/12/29 fix
-ver=4.2
+# 4.3 2025/01/02 sub
+ver=4.3
 # -----------------------------------------
 echo
 echo rfriends3 for ubuntu $ver
@@ -53,12 +53,11 @@ echo architecture is $ar $bit bits .
 echo user is $user .
 echo current directry is $dir
 echo home directry is $homedir
-# -----------------------------------------
+# =========================================
 echo
 echo install tools
 echo
-# -----------------------------------------
-#
+# =========================================
 sudo apt-get update && sudo apt-get -y install \
 unzip p7zip-full nano vim dnsutils iproute2 tzdata \
 at cron wget curl atomicparsley \
@@ -82,17 +81,13 @@ echo
 echo install rfriends3
 echo
 # =========================================
-#rm $homedir/rfriends3_latest_script.zip
-#wget http://rfriends.s1009.xrea.com/files3/rfriends3_latest_script.zip -O $homedir/rfriends3_latest_script.zip
-#unzip -q -o -d $homedir $homedir/rfriends3_latest_script.zip
-
 cd $homedir
 rm -f $SCRIPT
 wget $SITE/$SCRIPT
 unzip -q -o $SCRIPT
 # -----------------------------------------
 echo
-echo configure samba
+echo install samba
 echo
 # -----------------------------------------
 if [ $optsamba = "on" ]; then
@@ -123,7 +118,7 @@ mkdir -p $homedir/tmp/
 sed -e s%rfriendshomedir%$homedir%g $dir/usrdir.ini.skel > $homedir/rfriends3/config/usrdir.ini
 # -----------------------------------------
 echo
-echo configure lighttpd
+echo install lighttpd
 echo
 # -----------------------------------------
 if [ $optlighttpd="on" ]; then
