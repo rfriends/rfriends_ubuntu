@@ -108,6 +108,7 @@ EOF
 
 if [ $sys = "1" ]; then
   sudo systemctl enable smbd
+  sudo systemctl restart smbd
 else 
   sudo service smbd restart
 fi
@@ -141,6 +142,7 @@ echo lighttpd > $homedir/rfriends3/rfriends3_boot.txt
 
 if [ $sys = "1" ]; then
   sudo systemctl enable lighttpd
+  sudo systemctl restart lighttpd
 else 
   sudo service lighttpd restart
 fi
