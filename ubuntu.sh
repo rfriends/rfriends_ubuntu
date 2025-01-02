@@ -142,7 +142,6 @@ fi
 # -----------------------------------------
 # systemd or service
 # -----------------------------------------
-
 if [ $sys = "1" ]; then
   sudo systemctl enable atd
   sudo systemctl enable cron
@@ -151,16 +150,17 @@ else
   sudo service cron restart
 fi
 # -----------------------------------------
-
+echo
+echo architecture : $ar $bit bits .
 if [ $sys = "1" ]; then
   echo "type : systemd" 
 else 
   echo "type : initd"
 fi
-echo lighttpd : $optlighttpd
 echo samba : $optsamba
+echo lighttpd : $optlighttpd
 echo
-echo user : $user .
+echo user : $user
 echo current directry : $dir
 echo home directry : $homedir
 # -----------------------------------------
