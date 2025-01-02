@@ -126,15 +126,20 @@ echo lighttpd > $homedir/rfriends3/rfriends3_boot.txt
 # -----------------------------------------
 # systemd or service
 # -----------------------------------------
-sudo systemctl enable smbd
-sudo systemctl enable lighttpd
-sudo systemctl enable atd
-sudo systemctl enable cron
-#
-#sudo service smbd restart
-#sudo service lighttpd restart
-#sudo service atd restart
-#sudo service cron restart
+sys=`pgrep -o systemd`
+if [ $sys = "1" ]; then
+  echo "type : systemd" 
+  sudo systemctl enable smbd
+  sudo systemctl enable lighttpd
+  sudo systemctl enable atd
+  sudo systemctl enable cron
+else 
+  echo "type : initd"
+  sudo service smbd restart
+  sudo service lighttpd restart
+  sudo service atd restart
+  sudo service cron restart
+fi
 # -----------------------------------------
 #  アクセスアドレス
 # -----------------------------------------
