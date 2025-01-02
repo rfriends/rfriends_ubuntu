@@ -29,6 +29,12 @@ fi
 if [ -z "$optsamba" ]; then
   optsamba="on"
 fi
+if [ "$optlighttpd" != "on" ]; then
+  optlighttpd="off"
+fi
+if [ "$optsamba" != "on" ]; then
+  optsamba="off"
+fi
 #
 dir=$(cd $(dirname $0);pwd)
 user=`whoami`
@@ -151,7 +157,7 @@ else
 fi
 # -----------------------------------------
 echo
-echo architecture : $ar $bit bits .
+echo architecture : $ar $bit bits
 if [ $sys = "1" ]; then
   echo "type : systemd" 
 else 
@@ -160,8 +166,8 @@ fi
 echo samba : $optsamba
 echo lighttpd : $optlighttpd
 echo
-echo user : $user
 echo current directry : $dir
+echo user : $user
 echo home directry : $homedir
 # -----------------------------------------
 #  アクセスアドレス
