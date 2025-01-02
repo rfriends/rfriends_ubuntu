@@ -87,6 +87,13 @@ wget $SITE/$SCRIPT
 unzip -q -o $SCRIPT
 # -----------------------------------------
 echo
+echo configure usrdir
+echo
+# -----------------------------------------
+mkdir -p $homedir/tmp/
+ $homedir/rfriends3/config/usrdir.ini
+# -----------------------------------------
+echo
 echo install samba
 echo
 # -----------------------------------------
