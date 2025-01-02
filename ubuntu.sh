@@ -177,6 +177,7 @@ port=8000
 ip=`sh $homedir/rfriends3/getIP.sh`
 server=${ip}:${port}
 echo
+echo システムを再起動(reboot)後、
 echo ブラウザで、http://$server にアクセスしてください。
 echo
 # -----------------------------------------
