@@ -16,8 +16,7 @@
 ver=4.3
 # -----------------------------------------
 echo
-echo rfriends3 for ubuntu $ver
-echo `date`
+echo start
 echo
 # -----------------------------------------
 optlighttpd="on"
@@ -29,6 +28,5 @@ sh ubuntu.sh
 # -----------------------------------------
 # finish
 # -----------------------------------------
-echo `date`
-echo finished rfriends_ubuntu
+echo finished
 # -----------------------------------------
