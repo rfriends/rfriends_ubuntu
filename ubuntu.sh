@@ -19,22 +19,17 @@ echo rfriends3 for ubuntu $ver
 echo `date`
 echo
 # -----------------------------------------
+sys=`pgrep -o systemd`
+ar=`dpkg --print-architecture`
+bit=`getconf LONG_BIT`
+#
 if [ -z "$optlighttpd" ]; then
   optlighttpd="on"
 fi
 if [ -z "$optsamba" ]; then
   optsamba="on"
 fi
-echo lighttpd : $optlighttpd
-echo samba : $optsamba
-# -----------------------------------------
-sys=`pgrep -o systemd`
-if [ $sys = "1" ]; then
-  echo "type : systemd" 
-else 
-  echo "type : initd"
-fi
-# -----------------------------------------
+#
 dir=$(cd $(dirname $0);pwd)
 user=`whoami`
 if [ -z $HOME ]; then
@@ -45,14 +40,6 @@ fi
 #
 SITE=https://github.com/rfriends/rfriends3/releases/latest/download
 SCRIPT=rfriends3_latest_script.zip
-# -----------------------------------------
-ar=`dpkg --print-architecture`
-bit=`getconf LONG_BIT`
-echo
-echo architecture is $ar $bit bits .
-echo user is $user .
-echo current directry is $dir
-echo home directry is $homedir
 # =========================================
 echo
 echo install tools
@@ -85,13 +72,12 @@ cd $homedir
 rm -f $SCRIPT
 wget $SITE/$SCRIPT
 unzip -q -o $SCRIPT
-# -----------------------------------------
-echo
-echo configure usrdir
-echo
-# -----------------------------------------
+
 mkdir -p $homedir/tmp/
- $homedir/rfriends3/config/usrdir.ini
+cat <<EOF > $homedir/rfriends3/config/usrdir.ini
+usrdir = "$homedir/rfriends3/usr/"
+tmpdir = "$homedir/tmp/"
+EOF
 # -----------------------------------------
 echo
 echo install samba
@@ -102,13 +88,17 @@ sudo apt-get -y install samba
 sudo mkdir -p /var/log/samba
 sudo chown root:adm /var/log/samba
 
-mkdir -p $homedir/smbdir/usr2/
-
 sudo cp -p /etc/samba/smb.conf /etc/samba/smb.conf.org
 sed -e s%rfriendshomedir%$homedir%g $dir/smb.conf.skel > $dir/smb.conf
 sed -i s%rfriendsuser%$user%g $dir/smb.conf
 sudo cp -p $dir/smb.conf /etc/samba/smb.conf
 sudo chown root:root /etc/samba/smb.conf
+
+mkdir -p $homedir/smbdir/usr2/
+cat <<EOF > $homedir/rfriends3/config/usrdir.ini
+usrdir = "$homedir/smbdir/usr2/"
+tmpdir = "$homedir/tmp/"
+EOF
 
 if [ $sys = "1" ]; then
   sudo systemctl enable smbd
@@ -116,13 +106,6 @@ else
   sudo service smbd restart
 fi
 fi
-# -----------------------------------------
-echo
-echo configure usrdir
-echo
-# -----------------------------------------
-mkdir -p $homedir/tmp/
-sed -e s%rfriendshomedir%$homedir%g $dir/usrdir.ini.skel > $homedir/rfriends3/config/usrdir.ini
 # -----------------------------------------
 echo
 echo install lighttpd
@@ -161,18 +144,25 @@ fi
 # -----------------------------------------
 
 if [ $sys = "1" ]; then
-  echo "type : systemd" 
-  sudo systemctl enable smbd
-  sudo systemctl enable lighttpd
   sudo systemctl enable atd
   sudo systemctl enable cron
 else 
-  echo "type : initd"
-  sudo service smbd restart
-  sudo service lighttpd restart
   sudo service atd restart
   sudo service cron restart
 fi
+# -----------------------------------------
+
+if [ $sys = "1" ]; then
+  echo "type : systemd" 
+else 
+  echo "type : initd"
+fi
+echo lighttpd : $optlighttpd
+echo samba : $optsamba
+echo
+echo user : $user .
+echo current directry : $dir
+echo home directry : $homedir
 # -----------------------------------------
 #  アクセスアドレス
 # -----------------------------------------
