@@ -89,6 +89,7 @@ echo
 echo install samba
 echo
 # -----------------------------------------
+echo $optsamba
 if [ $optsamba = "on" ]; then
 sudo apt-get -y install samba
 sudo mkdir -p /var/log/samba
@@ -118,7 +119,8 @@ echo
 echo install lighttpd
 echo
 # -----------------------------------------
-if [ $optlighttpd="on" ]; then
+echo $optlighttpd
+if [ $optlighttpd = "on" ]; then
 sudo apt-get -y install lighttpd lighttpd-mod-webdav php-cgi
 cd $dir
 sudo cp -p /etc/lighttpd/conf-available/15-fastcgi-php.conf /etc/lighttpd/conf-available/15-fastcgi-php.conf.org
