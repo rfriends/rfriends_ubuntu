@@ -177,8 +177,6 @@ echo home directry : $homedir
 #port=8000
 #ip=`sh $homedir/rfriends3/getIP.sh`
 #server=${ip}:${port}
-echo IPアドレス:8000
-echo でアクセスしてください
 # -----------------------------------------
 # finish
 # -----------------------------------------
