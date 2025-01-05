@@ -105,7 +105,7 @@ usrdir = "$homedir/smbdir/usr2/"
 tmpdir = "$homedir/tmp/"
 EOF
 
-if [ $sys = "1" ]; then
+if [ $sys -eq 1 ]; then
   sudo systemctl enable smbd
   sudo systemctl restart smbd
 else 
@@ -140,7 +140,7 @@ sudo lighttpd-enable-mod fastcgi
 sudo lighttpd-enable-mod fastcgi-php
 echo lighttpd > $homedir/rfriends3/rfriends3_boot.txt
 
-if [ $sys = "1" ]; then
+if [ $sys -eq 1 ]; then
   sudo systemctl enable lighttpd
   sudo systemctl restart lighttpd
 else 
@@ -150,7 +150,7 @@ fi
 # -----------------------------------------
 # systemd or service
 # -----------------------------------------
-if [ $sys = "1" ]; then
+if [ $sys -eq 1 ]; then
   sudo systemctl enable atd
   sudo systemctl enable cron
 else 
@@ -159,11 +159,12 @@ else
 fi
 # -----------------------------------------
 echo
-if [ $sys = "1" ]; then
+if [ $sys -eq 1 ]; then
   echo "type : systemd" 
 else 
   echo "type : initd"
 fi
+echo
 echo samba : $optsamba
 echo lighttpd : $optlighttpd
 echo
@@ -182,4 +183,5 @@ echo home directry : $homedir
 # -----------------------------------------
 echo `date`
 echo finished rfriends_ubuntu
+echo
 # -----------------------------------------
