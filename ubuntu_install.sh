@@ -173,14 +173,12 @@ echo home directry : $homedir
 # -----------------------------------------
 #  アクセスアドレス
 # -----------------------------------------
-cd $homedir
-port=8000
-ip=`sh $homedir/rfriends3/getIP.sh`
-server=${ip}:${port}
-echo
-echo システムを再起動後、
-echo ブラウザで、http://$server にアクセスしてください。
-echo
+#cd $homedir
+#port=8000
+#ip=`sh $homedir/rfriends3/getIP.sh`
+#server=${ip}:${port}
+echo IPアドレス:8000
+echo でアクセスしてください
 # -----------------------------------------
 # finish
 # -----------------------------------------
