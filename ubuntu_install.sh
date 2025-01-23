@@ -182,7 +182,6 @@ echo home directry : $homedir
 #  アクセスアドレス
 # -----------------------------------------
 #cd $homedir
-#port=8000
 #ip=`sh $homedir/rfriends3/getIP.sh`
 #server=${ip}:${port}
 # -----------------------------------------
