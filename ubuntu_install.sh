@@ -40,6 +40,7 @@ fi
 dir=$(cd $(dirname $0);pwd)
 user=`whoami`
 group=`groups | cut -d " " -f 1`
+port=8000
 if [ -z $HOME ]; then
   homedir=`sh -c 'cd && pwd'`
 else
@@ -134,6 +135,7 @@ sudo cp -p /etc/lighttpd/lighttpd.conf /etc/lighttpd/lighttpd.conf.org
 sed -e s%rfriendshomedir%$homedir%g lighttpd.conf.skel > lighttpd.conf
 sed -i s%rfriendsuser%$user%g lighttpd.conf
 sed -i s%rfriendsgroup%$group%g lighttpd.conf
+sed -i s%rfriendsport%$port%g lighttpd.conf
 sudo cp -p lighttpd.conf /etc/lighttpd/lighttpd.conf
 sudo chown root:root /etc/lighttpd/lighttpd.conf
 
