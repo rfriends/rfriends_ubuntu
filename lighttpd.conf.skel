@@ -19,8 +19,8 @@ server.errorlog             = "rfriendshomedir/lighttpd/error.log"
 #server.pid-file             = "/run/lighttpd/lighttpd.pid"
 server.pid-file             = "rfriendshomedir/lighttpd/lighttpd.pid"
 server.username             = "rfriendsuser"
-server.groupname            = "rfriendsuser"
-server.port                 = 8000
+server.groupname            = "rfriendsgroup"
+server.port                 = rfriendsport
 
 # features
 #https://redmine.lighttpd.net/projects/lighttpd/wiki/Server_feature-flagsDetails
